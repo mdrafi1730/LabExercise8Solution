@@ -4,12 +4,13 @@ import java.util.Scanner;
 public class Dictionary {
 	public static final String filename = "dictionary.db";
 	public static void main(String[] args) {
-		Hashtable<Word> dict = null;
+		/*Hashtable<Word> dict = null;
 		try {
 			dict = (Hashtable<Word>)Util.load(filename);
 		} catch (Exception e) {
 			dict = new Hashtable<Word>(Word.class);
-		}
+		}*/
+		HashInterface<Word> dict = new Hashtable<>(Word.class);
 		Scanner input = new Scanner(System.in);
 		int option = -1;
 		String word = null;
@@ -33,17 +34,13 @@ public class Dictionary {
 				case 3:
 					System.out.println("Please enter the word: ");
 					word = input.next();
-					dict.delete(word);
+					//dict.delete(word);
 					try {
 						Util.save(filename, dict);
 					} catch (Exception e) { }
 					break;
 				case 4:
-					Word[] wd =  dict.getValues();
-					for (Word wd1: wd) {
-						if (wd1 != null) 
-							System.out.println(wd1);
-					}
+					dict.getAllValues();
 					break;
 				case 0:
 					break;
